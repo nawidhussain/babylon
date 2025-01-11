@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Page</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1 id="welcome-message">Welcome!</h1>
+    </header>
+    <nav class="bottom-nav">
+        <a class="nav-item" data-page="earn.html">
+            <img src="assets/gif1/money.gif" alt="Earn">
+            <span>Earn</span>
+        </a>
+        <a class="nav-item" data-page="task.html">
+            <img src="assets/gif1/task.gif" alt="Tasks">
+            <span>Tasks</span>
+        </a>
+        <a class="nav-item" data-page="referals.html">
+            <img src="assets/gif1/share.gif" alt="Referals">
+            <span>Referals</span>
+        </a>
+        <a class="nav-item" data-page="rankings.html">
+            <img src="assets/gif1/ranks.gif" alt="Rankings">
+            <span>Rankings</span>
+        </a>
+        <a class="nav-item" data-page="account.html">
+            <img src="assets/gif1/profile.gif" alt="Account">
+            <span>Account</span>
+        </a>
+    </nav>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
+        const username = urlParams.get('username');
+        const firstName = urlParams.get('first_name');
+
+        function updateNavLinks() {
+            const navLinks = document.querySelectorAll('.nav-item a');
+            navLinks.forEach((link) => {
+                const page = link.getAttribute('data-page');
+                link.href = `${page}?user_id=${userId}&username=${username}&first_name=${firstName}`;
+            });
+        }
+
+        updateNavLinks();
+        document.getElementById('welcome-message').innerText = `Welcome, ${firstName}!`;
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Page</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Account Details</h1>
+    </header>
+    <main id="user-info">
+        <!-- User data will be displayed here -->
+    </main>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
+        const username = urlParams.get('username');
+        const firstName = urlParams.get('first_name');
+
+        if (!userId || !username || !firstName) {
+            alert('Session expired. Redirecting to home.');
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('user-info').innerHTML = `
+            <p><strong>User ID:</strong> ${userId}</p>
+            <p><strong>Username:</strong> ${username}</p>
+            <p><strong>First Name:</strong> ${firstName}</p>
+        `;
+    </script>
+</body>
+</html>
